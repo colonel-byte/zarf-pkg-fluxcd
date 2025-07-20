@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/a1994sc/zarf-package-fluxcd/main/.github/hack/resources.schema.json",
+  "$schema": "https://raw.githubusercontent.com/colonel-byte/zarf-pkg-fluxcd/refs/heads/main/.github/hack/resources.schema.json",
   "projects": [
     {
       "path": "manifests",
