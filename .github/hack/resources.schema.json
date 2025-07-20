@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "object",
+            "patternProperties": {
+              "^x-": {}
+            },
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "tag": {
+                "type": "string",
+                "pattern": "^([a-zA-Z0-9]+-)?v?(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-(0|[1-9A-Za-z-][0-9A-Za-z-]*)(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+              },
+              "release": {
+                "type": "boolean"
+              },
+              "path": {
+                "type": "string"
+              },
+              "renovate": {
+                "type": "string",
+                "pattern": "^datasource=\\S+ depName=\\S+( repository=\\S+)?$"
+              }
+            },
+            "required": [
+              "url",
+              "tag",
+              "path"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "file": {
+            "type": "object",
+            "properties": {
+              "extract": {
+                "type": "boolean"
+              },
+              "match": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "repo",
+          "path"
+        ]
+      }
+    }
+  },
+  "required": [
+    "projects"
+  ]
+}
