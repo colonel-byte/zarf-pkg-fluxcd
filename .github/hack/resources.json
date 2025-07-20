@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/a1994sc/zarf-package-fluxcd/main/.github/hack/resources.schema.json",
+  "projects": [
+    {
+      "path": "manifests",
+      "file": {
+        "extract": true
+      },
+      "repo": {
+        "url": "https://github.com/fluxcd/flux2",
+        "renovate": "datasource=github-releases depName=fluxcd/flux2",
+        "tag": "v2.6.4",
+        "path": "manifests.tar.gz",
+        "release": true
+      }
+    }
+  ]
+}
