@@ -19,15 +19,10 @@ jobs:
           - upstream
           - registry1
     steps:
-      - name: Setup Package Name
-        id: package
-        run: |-
-          echo "name=zarf/$(echo "${{ github.event.repository.name }}" | cut -c14-)" >> "$GITHUB_OUTPUT"
-
       - name: Delete old tags
         uses: dataaxiom/ghcr-cleanup-action@cd0cdb900b5dbf3a6f2cc869f0dbb0b8211f50c4 # v1.0.16
         with:
-          packages: '${{ steps.package.outputs.name }}'
+          packages: 'zarf/fluxcd'
           # The hash suffix is "-g" + an unambiguous abbreviation for the tip commit of parent
           # https://git-scm.com/docs/git-describe#_examples
           # TL;DR this will only hit the non-tagged versions
@@ -38,7 +33,7 @@ jobs:
       - name: Validate images
         uses: dataaxiom/ghcr-cleanup-action@cd0cdb900b5dbf3a6f2cc869f0dbb0b8211f50c4 # v1.0.16
         with:
-          packages: '${{ steps.package.outputs.name }}'
+          packages: 'zarf/fluxcd'
           token: ${{ secrets.GITHUB_TOKEN }}
           validate: true
           delete-ghost-images: true
