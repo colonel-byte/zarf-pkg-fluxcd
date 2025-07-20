@@ -1,0 +1,4 @@
+log_format: console
+no_color: false
+package:
+  oci_concurrency: 15
