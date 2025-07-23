@@ -63,4 +63,6 @@ jobs:
 
       - name: Publish Zarf package
         run: |-
-          zarf package publish zarf-*.zst oci://ghcr.io/${{ github.repository_owner }}/zarf
+          zarf package publish --signing-key env://COSIGN_KEY --signing-key-pass ${{ secrets.COSIGN_PASS }} zarf-*.zst oci://ghcr.io/${{ github.repository_owner }}/zarf
+        env:
+          COSIGN_KEY: ${{ secrets.COSIGN_KEY }}
