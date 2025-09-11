@@ -1,8 +1,8 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    "config:recommended",
-    "helpers:pinGitHubActionDigests"
+    'config:recommended',
+    'helpers:pinGitHubActionDigests',
   ],
   automerge: true,
   platformAutomerge: true,
@@ -10,37 +10,37 @@
   separateMajorMinor: false,
   dependencyDashboard: true,
   assignees: [
-    "@A1994SC"
+    '@A1994SC',
   ],
   packageRules: [],
   customManagers: [
     {
-      customType: "regex",
+      customType: 'regex',
       description: [
-        "Regex for resource.json hack"
+        'Regex for resource.json hack',
       ],
-      fileMatch: [
-        "(^|/).github/hack/resources\\.json"
+      managerFilePatterns: [
+        '/(^|/).github/hack/resources\\.json/',
       ],
       matchStrings: [
-        "\"renovate\": \"datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\",\\n.+?: ?.*\"(?<currentValue>\\S+?)\""
+        '"renovate": "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?",\\n.+?: ?.*"(?<currentValue>\\S+?)"',
       ],
-      datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
+      datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}',
     },
     {
-      customType: "regex",
+      customType: 'regex',
       description: [
-        "Process custom dependencies"
+        'Process custom dependencies',
       ],
-      fileMatch: [
-        "(^|/).+\\.ya?ml(\\.j2)?$"
+      managerFilePatterns: [
+        '/(^|/).+\\.ya?ml(\\.j2)?$/',
       ],
       matchStrings: [
-        "(?m:# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>[a-z-0-9]+?))?( repository=(?<registryUrl>\\S+))?\\n.+?: ?\"?.*(?<currentValue>\\S+?)\"?$)",
-        "(?m:# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>[a-z-0-9]+?))?\\n.+?\/(?<currentValue>(v|\\d)[^\/]+)\\S+$)"
+        '(?m:# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>[a-z-0-9]+?))?( repository=(?<registryUrl>\\S+))?\\n.+?: ?"?.*(?<currentValue>\\S+?)"?$)',
+        '(?m:# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>[a-z-0-9]+?))?\\n.+?/(?<currentValue>(v|\\d)[^/]+)\\S+$)',
       ],
-      datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-    }
-  ]
+      datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}',
+      versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
+    },
+  ],
 }
