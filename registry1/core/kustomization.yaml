@@ -2,12 +2,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - manifests/rbac.yaml
-  - manifests/policies.yaml
-  - manifests/helm-controller.yaml
-  - manifests/kustomize-controller.yaml
-  - manifests/notification-controller.yaml
-  - manifests/source-controller.yaml
+  - rbac.yaml
+  - policies.yaml
+  - helm-controller.yaml
+  - kustomize-controller.yaml
+  - notification-controller.yaml
+  - source-controller.yaml
 images:
   - name: fluxcd/helm-controller
     newName: registry1.dso.mil/ironbank/fluxcd/helm-controller
@@ -21,6 +21,8 @@ images:
     newName: registry1.dso.mil/ironbank/fluxcd/image-automation-controller
   - name: fluxcd/image-reflector-controller
     newName: registry1.dso.mil/ironbank/fluxcd/image-reflector-controller
+  - name: fluxcd/source-watcher
+    newName: registry1.dso.mil/ironbank/fluxcd/source-watcher
 labels:
   - pairs:
       app.kubernetes.io/instance: flux-system
@@ -55,14 +57,14 @@ patches:
             automountServiceAccountToken: true
             # Required by Pod Security Policy
             securityContext:
-              runAsUser: 1000
-              fsGroup: 1000
+              runAsUser: 65432
+              fsGroup: 65432
             containers:
               - name: manager
                 # Required by Pod Security Policy
                 securityContext:
-                  runAsUser: 1000
-                  runAsGroup: 1000
+                  runAsUser: 65432
+                  runAsGroup: 65432
                   privileged: false
                   readOnlyRootFilesystem: true
                   allowPrivilegeEscalation: false
