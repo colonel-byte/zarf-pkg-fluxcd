@@ -1,0 +1,35 @@
+name: Update lock
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'  # every Sunday at midnight
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+
+      - run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - uses: chainguard-dev/actions/setup-gitsign@main
+
+      - uses: DeterminateSystems/nix-installer-action@786fff0690178f1234e4e1fe9b536e94f5433196 # v20
+
+      - name: Update flake
+        run: |-
+          nix flake update
+
+      - name: Commit & Push changes
+        uses: actions-js/push@5a7cbd780d82c0c937b5977586e641b2fd94acc5 # v1.5
+        with:
+          branch: 'main'
+          message: "chore(flake): bump inputs"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
