@@ -20,6 +20,7 @@ jobs:
         arch:
           - amd64
           - arm64
+          - skeleton
     outputs:
       git-tag: ${{ steps.describe.outputs.git_describe }}
     steps:
@@ -69,6 +70,7 @@ jobs:
         arch:
           - amd64
           - arm64
+          - skeleton
     outputs:
       git-tag: ${{ steps.describe.outputs.git_describe }}
     steps:
