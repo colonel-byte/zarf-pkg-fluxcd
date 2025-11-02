@@ -15,7 +15,7 @@ jobs:
       id-token: write
       packages: write
     strategy:
-      fail-fast: false
+      max-parallel: 1
       matrix:
         arch:
           - amd64
@@ -23,10 +23,6 @@ jobs:
     outputs:
       git-tag: ${{ steps.describe.outputs.git_describe }}
     steps:
-      - name: Sleep for 30 seconds to avoid race condition with arm/amd
-        if: ${{ matrix.types == 'arm64' }}
-        run: sleep 30s
-
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
@@ -68,7 +64,7 @@ jobs:
       id-token: write
       packages: write
     strategy:
-      fail-fast: false
+      max-parallel: 1
       matrix:
         arch:
           - amd64
@@ -76,10 +72,6 @@ jobs:
     outputs:
       git-tag: ${{ steps.describe.outputs.git_describe }}
     steps:
-      - name: Sleep for 30 seconds to avoid race condition with arm/amd
-        if: ${{ matrix.types == 'arm64' }}
-        run: sleep 30s
-
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
@@ -101,7 +93,6 @@ jobs:
 
       - name: Login to Registry1
         uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3.6.0
-        if: ${{ matrix.type == 'registry1' }}
         with:
           registry: registry1.dso.mil
           username: ${{ secrets.REG_ONE_USER }}
