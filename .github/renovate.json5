@@ -15,17 +15,17 @@
   packageRules: [],
   customManagers: [
     {
-      customType: 'regex',
+      customType: "regex",
       description: [
-        'Regex for resource.json hack',
+        "Regex for resource.json hack"
       ],
       managerFilePatterns: [
-        '/(^|/).github/hack/resources\\.json/',
+        "/(^|/).github/hack/resources\\.json/"
       ],
       matchStrings: [
         '"renovate": "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?",\\n.+?: ?.*"(?<currentValue>\\S+?)"',
       ],
-      datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}',
+      datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
     },
     {
       customType: 'regex',

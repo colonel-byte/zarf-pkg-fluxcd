@@ -2,9 +2,37 @@
   "$schema": "https://raw.githubusercontent.com/colonel-byte/zarf-pkg-fluxcd/refs/heads/main/.github/hack/resources.schema.json",
   "projects": [
     {
-      "path": "manifests",
+      "path": "core",
       "file": {
         "extract": true
+      },
+      "repo": {
+        "url": "https://github.com/fluxcd/flux2",
+        "renovate": "datasource=github-releases depName=fluxcd/flux2",
+        "tag": "v2.7.3",
+        "path": "manifests.tar.gz",
+        "release": true
+      }
+    },
+    {
+      "path": "images",
+      "file": {
+        "extract": true,
+        "match": "image-*.yaml"
+      },
+      "repo": {
+        "url": "https://github.com/fluxcd/flux2",
+        "renovate": "datasource=github-releases depName=fluxcd/flux2",
+        "tag": "v2.7.3",
+        "path": "manifests.tar.gz",
+        "release": true
+      }
+    },
+    {
+      "path": "source",
+      "file": {
+        "extract": true,
+        "match": "source-watcher.yaml"
       },
       "repo": {
         "url": "https://github.com/fluxcd/flux2",
