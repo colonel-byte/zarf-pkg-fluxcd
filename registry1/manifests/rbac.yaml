@@ -49,6 +49,12 @@ rules:
   verbs:
   - '*'
 - apiGroups:
+  - source.extensions.fluxcd.io
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- apiGroups:
   - ""
   resources:
   - namespaces
@@ -196,4 +202,7 @@ subjects:
   namespace: flux-system
 - kind: ServiceAccount
   name: image-automation-controller
+  namespace: flux-system
+- kind: ServiceAccount
+  name: source-watcher
   namespace: flux-system
