@@ -17,7 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:numtide/treefmt-nix";
     };
-    ascii-pkgs.url = "github:a1994sc/nix-pkgs";
     # keep-sorted end
   };
 
@@ -37,7 +36,7 @@
         pkgs = import nixpkgs {
           inherit system;
         };
-        zarf = inputs.ascii-pkgs.packages.${system}.zarf;
+        # zarf = inputs.ascii-pkgs.packages.${system}.zarf;
         treefmtEval = treefmt-nix.lib.evalModule pkgs (
           { pkgs, ... }:
           {
@@ -76,24 +75,20 @@
             # keep-sorted end
           }
         );
-        shellHook =
-          self.checks.${system}.pre-commit-check.shellHook
-          + ''
-            export ZARF_CONFIG=$(git rev-parse --show-toplevel)/zarf-config.yaml
-          '';
+        shellHook = self.checks.${system}.pre-commit-check.shellHook;
         buildInputs = self.checks.${system}.pre-commit-check.enabledPackages ++ [
           (pkgs.writeShellScriptBin "zpkg" ''
             rm -rf $TMPDIR/zarf-*
             rm -rf $TMPDIR/syft-archive-contents-*
             rm -rf $TMPDIR/container_images_storage*
-            ${zarf}/bin/zarf package create -o $(git rev-parse --show-toplevel) --log-format=console --confirm $@
+            ${pkgs.zarf}/bin/zarf package create -o $(git rev-parse --show-toplevel) --log-format=console --confirm $@
           '')
           (pkgs.writeShellScriptBin "zdeploy" ''
             rm -rf $TMPDIR/zarf-*
-            ${zarf}/bin/zarf package deploy --confirm --log-format=console $@
+            ${pkgs.zarf}/bin/zarf package deploy --confirm --log-format=console $@
           '')
           pkgs.gh
-          zarf
+          pkgs.zarf
           pkgs.oras
         ];
       in
@@ -107,8 +102,6 @@
               check-shebang-scripts-are-executable.enable = true;
               end-of-file-fixer.enable = true;
               nixfmt-rfc-style.enable = true;
-              # no-commit-to-branch.enable = true;
-              # no-commit-to-branch.settings.branch = [ "main" ];
               trim-trailing-whitespace.enable = true;
               # keep-sorted end
             };
