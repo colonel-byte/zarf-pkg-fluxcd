@@ -1356,7 +1356,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: fluxcd/notification-controller:v1.7.4
+        image: fluxcd/notification-controller:v1.7.5
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
