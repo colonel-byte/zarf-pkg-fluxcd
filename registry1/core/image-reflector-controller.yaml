@@ -1246,7 +1246,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: fluxcd/image-reflector-controller:v1.0.3
+        image: fluxcd/image-reflector-controller:v1.0.4
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
