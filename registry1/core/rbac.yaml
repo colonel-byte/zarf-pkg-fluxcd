@@ -126,6 +126,7 @@ rules:
 - apiGroups:
   - notification.toolkit.fluxcd.io
   - source.toolkit.fluxcd.io
+  - source.extensions.fluxcd.io
   - helm.toolkit.fluxcd.io
   - image.toolkit.fluxcd.io
   - kustomize.toolkit.fluxcd.io
@@ -150,6 +151,7 @@ rules:
 - apiGroups:
   - notification.toolkit.fluxcd.io
   - source.toolkit.fluxcd.io
+  - source.extensions.fluxcd.io
   - helm.toolkit.fluxcd.io
   - image.toolkit.fluxcd.io
   - kustomize.toolkit.fluxcd.io

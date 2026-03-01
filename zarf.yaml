@@ -19,10 +19,10 @@ components:
         kustomizations:
           - upstream/core
     images:
-      - ghcr.io/fluxcd/helm-controller:v1.4.3
-      - ghcr.io/fluxcd/kustomize-controller:v1.7.2
-      - ghcr.io/fluxcd/notification-controller:v1.7.4
-      - ghcr.io/fluxcd/source-controller:v1.7.3
+      - ghcr.io/fluxcd/helm-controller:v1.5.1
+      - ghcr.io/fluxcd/kustomize-controller:v1.8.1
+      - ghcr.io/fluxcd/notification-controller:v1.8.1
+      - ghcr.io/fluxcd/source-controller:v1.8.0
   - name: fluxcd-image-controller
     required: false
     only:
@@ -33,8 +33,8 @@ components:
         kustomizations:
           - upstream/images
     images:
-      - ghcr.io/fluxcd/image-automation-controller:v1.0.3
-      - ghcr.io/fluxcd/image-reflector-controller:v1.0.3
+      - ghcr.io/fluxcd/image-automation-controller:v1.1.0
+      - ghcr.io/fluxcd/image-reflector-controller:v1.1.0
   - name: fluxcd-source-watcher
     required: false
     only:
@@ -45,7 +45,7 @@ components:
         kustomizations:
           - upstream/source
     images:
-      - ghcr.io/fluxcd/source-watcher:v2.0.2
+      - ghcr.io/fluxcd/source-watcher:v2.1.0
   - name: fluxcd-core
     required: true
     only:
@@ -56,10 +56,10 @@ components:
         kustomizations:
           - registry1/core
     images:
-      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v1.4.3
-      - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v1.7.2
-      - registry1.dso.mil/ironbank/fluxcd/notification-controller:v1.7.4
-      - registry1.dso.mil/ironbank/fluxcd/source-controller:v1.7.3
+      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v1.5.1
+      - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v1.8.1
+      - registry1.dso.mil/ironbank/fluxcd/notification-controller:v1.8.1
+      - registry1.dso.mil/ironbank/fluxcd/source-controller:v1.8.0
   - name: fluxcd-image-controller
     required: false
     only:
@@ -70,8 +70,8 @@ components:
         kustomizations:
           - registry1/images
     images:
-      - registry1.dso.mil/ironbank/fluxcd/image-automation-controller:v1.0.3
-      - registry1.dso.mil/ironbank/fluxcd/image-reflector-controller:v1.0.3
+      - registry1.dso.mil/ironbank/fluxcd/image-automation-controller:v1.1.0
+      - registry1.dso.mil/ironbank/fluxcd/image-reflector-controller:v1.1.0
 # the image does not exist in ironbank as of 11/02/2025
 # - name: fluxcd-source-watcher
 #   required: false
