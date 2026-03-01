@@ -9,7 +9,7 @@
       "repo": {
         "url": "https://github.com/fluxcd/flux2",
         "renovate": "datasource=github-releases depName=fluxcd/flux2",
-        "tag": "v2.7.3",
+        "tag": "v2.8.1",
         "path": "manifests.tar.gz",
         "release": true
       }
@@ -23,7 +23,7 @@
       "repo": {
         "url": "https://github.com/fluxcd/flux2",
         "renovate": "datasource=github-releases depName=fluxcd/flux2",
-        "tag": "v2.7.3",
+        "tag": "v2.8.1",
         "path": "manifests.tar.gz",
         "release": true
       }
@@ -37,7 +37,7 @@
       "repo": {
         "url": "https://github.com/fluxcd/flux2",
         "renovate": "datasource=github-releases depName=fluxcd/flux2",
-        "tag": "v2.7.3",
+        "tag": "v2.8.1",
         "path": "manifests.tar.gz",
         "release": true
       }
