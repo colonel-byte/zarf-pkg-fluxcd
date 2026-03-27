@@ -19,7 +19,7 @@ components:
         kustomizations:
           - upstream/core
     images:
-      - ghcr.io/fluxcd/helm-controller:v1.5.2
+      - ghcr.io/fluxcd/helm-controller:v1.5.3
       - ghcr.io/fluxcd/kustomize-controller:v1.8.2
       - ghcr.io/fluxcd/notification-controller:v1.8.2
       - ghcr.io/fluxcd/source-controller:v1.8.1
@@ -56,7 +56,7 @@ components:
         kustomizations:
           - registry1/core
     images:
-      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v1.5.2
+      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v1.5.3
       - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v1.8.2
       - registry1.dso.mil/ironbank/fluxcd/notification-controller:v1.8.2
       - registry1.dso.mil/ironbank/fluxcd/source-controller:v1.8.1
