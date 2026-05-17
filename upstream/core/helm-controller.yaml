@@ -758,8 +758,11 @@ spec:
                       rollback has been performed.
                     type: boolean
                   force:
-                    description: Force forces resource updates through a replacement
-                      strategy.
+                    description: |-
+                      Force forces resource updates through a replacement strategy
+                      that avoids 3-way merge conflicts on client-side apply.
+                      This field is ignored for server-side apply (which always
+                      forces conflicts with other field managers).
                     type: boolean
                   recreate:
                     description: |-
@@ -963,8 +966,11 @@ spec:
                       upgrade has been performed.
                     type: boolean
                   force:
-                    description: Force forces resource updates through a replacement
-                      strategy.
+                    description: |-
+                      Force forces resource updates through a replacement strategy
+                      that avoids 3-way merge conflicts on client-side apply.
+                      This field is ignored for server-side apply (which always
+                      forces conflicts with other field managers).
                     type: boolean
                   preserveValues:
                     description: |-
@@ -1490,7 +1496,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: fluxcd/helm-controller:v1.5.3
+        image: fluxcd/helm-controller:v1.5.4
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
