@@ -1,0 +1,64 @@
+---
+reporting:
+  interval: 5m
+
+web:
+  enabled: true
+  networkPolicy:
+    create: true
+  rbac:
+    createRoles: true
+    createAggregation: false
+  serverReplicas: 1
+
+installCRDs: true
+
+image:
+  repository: ghcr.io/controlplaneio-fluxcd/flux-operator
+  pullSecrets:
+    - name: private-registry
+  imagePullPolicy: IfNotPresent
+
+resources:
+  limits:
+    cpu: 2000m
+    memory: 1Gi
+  requests:
+    cpu: 100m
+    memory: 64Mi
+
+serviceAccount:
+  create: true
+  automount: true
+  name: ""
+
+rbac:
+  create: true
+  createAggregation: true
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/os
+              operator: In
+              values:
+                - linux
+
+tolerations: []
+
+extraEnvs:
+  - name: SSL_CERT_FILE
+    value: /etc/zarf/ca.crt
+
+extraVolumes:
+  - name: zarf-registry
+    secret:
+      secretName: zarf-registry-client-tls
+
+extraVolumeMounts:
+  - name: zarf-registry
+    mountPath: /etc/zarf/ca.crt
+    readOnly: true
+    subPath: ca.crt

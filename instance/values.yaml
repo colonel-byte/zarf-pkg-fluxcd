@@ -1,0 +1,26 @@
+
+instance:
+  distribution:
+    version: "2.9.0"
+    registry: "ghcr.io/fluxcd"
+    artifact: "oci://zarf-docker-registry.zarf.svc.cluster.local:5000/controlplaneio-fluxcd/flux-operator-manifests:v0.53.0-1782987615"
+    artifactPullSecret: private-registry
+    imagePullSecret: private-registry
+
+  components:
+    - source-controller
+    - kustomize-controller
+    - helm-controller
+    - notification-controller
+
+  cluster:
+    type: kubernetes
+    size: small
+    domain: "cluster.local"
+    networkPolicy: true
+    multitenant: true
+    tenantDefaultServiceAccount: "default"
+  sharding:
+    key: "sharding.fluxcd.io/key"
+    shards:
+      - bigbang

@@ -3,7 +3,7 @@
 set -u
 set -o pipefail
 
-declare -a FLAVOR=("upstream" "registry1")
+declare -a FLAVOR=("upstream")
 declare -a COMPONENTS=("core" "image-controller" "source-watcher")
 
 for flavor in "${FLAVOR[@]}"; do
@@ -13,9 +13,6 @@ for flavor in "${FLAVOR[@]}"; do
   zarf dev find-images --flavor $flavor --skip-cosign . 2>/dev/null > .direnv/$flavor/out.yml
 
   for component in "${COMPONENTS[@]}"; do
-    if [[ "$flavor" == "registry1" && "$component" == "source-watcher" ]]; then
-      continue
-    fi
     export yq_component=$(printf '.components[] | select(.only.flavor == "%s" and .name == "fluxcd-%s") | path | .[1]' "$flavor" "$component")
     echo "::debug::yq_component='${yq_component}'"
     export yq_index=$(yq "$yq_component" zarf.yaml)

@@ -9,77 +9,31 @@ metadata:
     org.opencontainers.image.source: https://github.com/colonel-byte/zarf-pkg-fluxcd
     org.opencontainers.image.description: Zarf package for deploying fluxcd
 components:
+  - name: fluxcd-operator
+    required: true
+    charts:
+      - name: flux-operator
+        namespace: flux-system
+        url: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator
+        version: 0.53.0
+        valuesFiles:
+          - operator/values.yaml
+    images:
+      - ghcr.io/controlplaneio-fluxcd/flux-operator:v0.53.0
+      - ghcr.io/controlplaneio-fluxcd/flux-operator:sha256-2f41fb0bfd57f4a9d592cc49fe6cc57dfad0013961455e050effc8a0987e2372.att
   - name: fluxcd-core
     required: true
-    only:
-      flavor: upstream
-    manifests:
-      - name: fluxcd
+    charts:
+      - name: flux-instance
         namespace: flux-system
-        kustomizations:
-          - upstream/core
+        url: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance
+        version: 0.53.0
+        valuesFiles:
+          - instance/values.yaml
     images:
-      - ghcr.io/fluxcd/helm-controller:v1.6.1
-      - ghcr.io/fluxcd/kustomize-controller:v1.9.1
-      - ghcr.io/fluxcd/notification-controller:v1.9.1
-      - ghcr.io/fluxcd/source-controller:v1.9.1
-  - name: fluxcd-image-controller
-    required: false
-    only:
-      flavor: upstream
-    manifests:
-      - name: fluxcd
-        namespace: flux-system
-        kustomizations:
-          - upstream/images
-    images:
-      - ghcr.io/fluxcd/image-automation-controller:v1.2.1
-      - ghcr.io/fluxcd/image-reflector-controller:v1.2.1
-  - name: fluxcd-source-watcher
-    required: false
-    only:
-      flavor: upstream
-    manifests:
-      - name: fluxcd
-        namespace: flux-system
-        kustomizations:
-          - upstream/source
-    images:
-      - ghcr.io/fluxcd/source-watcher:v2.2.1
-  - name: fluxcd-core
-    required: true
-    only:
-      flavor: registry1
-    manifests:
-      - name: fluxcd
-        namespace: flux-system
-        kustomizations:
-          - registry1/core
-    images:
-      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v1.6.1
-      - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v1.9.1
-      - registry1.dso.mil/ironbank/fluxcd/notification-controller:v1.9.1
-      - registry1.dso.mil/ironbank/fluxcd/source-controller:v1.9.1
-  - name: fluxcd-image-controller
-    required: false
-    only:
-      flavor: registry1
-    manifests:
-      - name: fluxcd
-        namespace: flux-system
-        kustomizations:
-          - registry1/images
-    images:
-      - registry1.dso.mil/ironbank/fluxcd/image-automation-controller:v1.2.1
-      - registry1.dso.mil/ironbank/fluxcd/image-reflector-controller:v1.2.1
-# the image does not exist in ironbank as of 11/02/2025
-# - name: fluxcd-source-watcher
-#   required: false
-#   only:
-#     flavor: registry1
-#   manifests:
-#     - name: fluxcd
-#       namespace: flux-system
-#       kustomizations:
-#         - registry1/source
-#   images: []
+      - ghcr.io/controlplaneio-fluxcd/distroless/flux-manifests:v2.9.0
+      - ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.53.0-1782987615
+      - ghcr.io/fluxcd/helm-controller:v1.6.1@sha256:b113d67328a58ecaa04ce69aa41fb285a1ebd10f021e2371065598a1325042fd
+      - ghcr.io/fluxcd/kustomize-controller:v1.9.1@sha256:ae1a90c0c76d518618c5e2a64b82b6476c8213aa7a2b17ec8b94828f0230a6b8
+      - ghcr.io/fluxcd/notification-controller:v1.9.1@sha256:d52626555d96dd5666a942ef8aad09650e1bdbf58ca67ddb835d9de27e9002be
+      - ghcr.io/fluxcd/source-controller:v1.9.1@sha256:773a90fa26e014d4f23d5c6a48ca5875c4686bdc6aac2ea73951b9cd9fda48dd
