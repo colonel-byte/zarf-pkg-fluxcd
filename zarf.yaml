@@ -83,3 +83,40 @@ components:
 #       kustomizations:
 #         - registry1/source
 #   images: []
+  - name: fluxcd-core
+    required: true
+    only:
+      flavor: minus
+    manifests:
+      - name: fluxcd
+        namespace: flux-system
+        kustomizations:
+          - minus/core
+    images:
+      - reg.mini.dev/fluxcd-helm-controller:v1.6.2
+      - reg.mini.dev/fluxcd-kustomize-controller:v1.9.2
+      - reg.mini.dev/fluxcd-notification-controller:v1.9.2
+      - reg.mini.dev/fluxcd-source-controller:v1.9.2
+  - name: fluxcd-image-controller
+    required: false
+    only:
+      flavor: minus
+    manifests:
+      - name: fluxcd
+        namespace: flux-system
+        kustomizations:
+          - minus/images
+    images:
+      - reg.mini.dev/fluxcd-image-automation-controller:v1.2.2
+      - reg.mini.dev/fluxcd-image-reflector-controller:v1.2.2
+  - name: fluxcd-source-watcher
+    required: false
+    only:
+      flavor: minus
+    manifests:
+      - name: fluxcd
+        namespace: flux-system
+        kustomizations:
+          - minus/source
+    images:
+      - reg.mini.dev/fluxcd-source-watcher:v2.2.2
