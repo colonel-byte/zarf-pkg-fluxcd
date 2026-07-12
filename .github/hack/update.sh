@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-declare -a FLAVOR=("upstream" "registry1")
+declare -a FLAVOR=("upstream" "registry1" "minus")
 
 readarray resourceMap < <(yq -o=j -I=0 '.projects[]' .github/hack/resources.json)
 

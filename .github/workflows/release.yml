@@ -19,6 +19,7 @@ jobs:
         type:
           - upstream
           - registry1
+          - minus
         arch:
           - amd64
           - arm64
