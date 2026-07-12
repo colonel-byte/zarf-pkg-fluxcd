@@ -3,6 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.21.0
+    kustomize.toolkit.fluxcd.io/substitute: disabled
   labels:
     app.kubernetes.io/component: source-watcher
     app.kubernetes.io/part-of: flux
@@ -410,7 +411,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: fluxcd/source-watcher:v2.2.1
+        image: fluxcd/source-watcher:v2.2.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
