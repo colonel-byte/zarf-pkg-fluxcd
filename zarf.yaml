@@ -72,17 +72,6 @@ components:
     images:
       - registry1.dso.mil/ironbank/fluxcd/image-automation-controller:v1.2.2
       - registry1.dso.mil/ironbank/fluxcd/image-reflector-controller:v1.2.2
-# the image does not exist in ironbank as of 11/02/2025
-# - name: fluxcd-source-watcher
-#   required: false
-#   only:
-#     flavor: registry1
-#   manifests:
-#     - name: fluxcd
-#       namespace: flux-system
-#       kustomizations:
-#         - registry1/source
-#   images: []
   - name: fluxcd-core
     required: true
     only:
