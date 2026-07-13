@@ -613,7 +613,7 @@ spec:
                 description: |-
                   ObservedExclusionList is a list of observed exclusion list. It reflects
                   the exclusion rules used for the observed scan result in
-                  spec.lastScanResult.
+                  status.lastScanResult.
                 items:
                   type: string
                 type: array
@@ -676,7 +676,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: fluxcd/image-reflector-controller:v1.2.2
+        image: fluxcd/image-reflector-controller:v1.2.3
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:

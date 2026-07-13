@@ -1435,7 +1435,7 @@ spec:
                 description: |-
                   URL is the dynamic fetch link for the latest Artifact.
                   It is provided on a "best effort" basis, and using the precise
-                  BucketStatus.Artifact data is recommended.
+                  HelmChartStatus.Artifact data is recommended.
                 type: string
             type: object
         type: object
@@ -2277,7 +2277,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: fluxcd/source-controller:v1.9.2
+        image: fluxcd/source-controller:v1.9.3
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
