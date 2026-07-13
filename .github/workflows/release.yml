@@ -18,7 +18,6 @@ jobs:
       matrix:
         type:
           - upstream
-          - registry1
           - minus
         arch:
           - amd64
