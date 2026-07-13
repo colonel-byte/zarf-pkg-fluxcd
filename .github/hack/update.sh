@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-
-set -euo pipefail
+set -e
+set -u
+set -o pipefail
 
 declare -a FLAVOR=("upstream" "registry1" "minus")
 
