@@ -438,7 +438,6 @@ spec:
                 type: object
               observedSourceRevision:
                 description: |-
-                  ObservedPolicies []ObservedPolicy `json:"observedPolicies,omitempty"`
                   ObservedSourceRevision is the last observed source revision. This can be
                   used to determine if the source has been updated since last observation.
                 type: string
@@ -497,7 +496,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: fluxcd/image-automation-controller:v1.2.2
+        image: fluxcd/image-automation-controller:v1.2.3
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
