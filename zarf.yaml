@@ -3,7 +3,8 @@
 kind: ZarfPackageConfig
 metadata:
   name: fluxcd
-  version: "###ZARF_PKG_TMPL_VERSION###"
+  # renovate: datasource=github-releases depName=fluxcd/flux2
+  version: v2.9.2
   source: https://github.com/colonel-byte/zarf-pkg-fluxcd
   annotations:
     org.opencontainers.image.source: https://github.com/colonel-byte/zarf-pkg-fluxcd
@@ -49,38 +50,12 @@ components:
   - name: fluxcd-core
     required: true
     only:
-      flavor: registry1
+      flavor: minimus
     manifests:
       - name: fluxcd
         namespace: flux-system
         kustomizations:
-          - registry1/core
-    images:
-      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v1.6.2
-      - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v1.9.3
-      - registry1.dso.mil/ironbank/fluxcd/notification-controller:v1.9.2
-      - registry1.dso.mil/ironbank/fluxcd/source-controller:v1.9.3
-  - name: fluxcd-image-controller
-    required: false
-    only:
-      flavor: registry1
-    manifests:
-      - name: fluxcd
-        namespace: flux-system
-        kustomizations:
-          - registry1/images
-    images:
-      - registry1.dso.mil/ironbank/fluxcd/image-automation-controller:v1.2.3
-      - registry1.dso.mil/ironbank/fluxcd/image-reflector-controller:v1.2.3
-  - name: fluxcd-core
-    required: true
-    only:
-      flavor: minus
-    manifests:
-      - name: fluxcd
-        namespace: flux-system
-        kustomizations:
-          - minus/core
+          - minimus/core
     images:
       - reg.mini.dev/fluxcd-helm-controller:v1.6.2
       - reg.mini.dev/fluxcd-kustomize-controller:v1.9.2
@@ -89,23 +64,23 @@ components:
   - name: fluxcd-image-controller
     required: false
     only:
-      flavor: minus
+      flavor: minimus
     manifests:
       - name: fluxcd
         namespace: flux-system
         kustomizations:
-          - minus/images
+          - minimus/images
     images:
       - reg.mini.dev/fluxcd-image-automation-controller:v1.2.2
       - reg.mini.dev/fluxcd-image-reflector-controller:v1.2.2
   - name: fluxcd-source-watcher
     required: false
     only:
-      flavor: minus
+      flavor: minimus
     manifests:
       - name: fluxcd
         namespace: flux-system
         kustomizations:
-          - minus/source
+          - minimus/source
     images:
       - reg.mini.dev/fluxcd-source-watcher:v2.2.2
