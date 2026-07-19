@@ -2,6 +2,7 @@
 name: Release Zarf Package
 
 on:
+  workflow_call:
   schedule:
     - cron: "15 2 * * *"
   push:
