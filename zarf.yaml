@@ -4,7 +4,7 @@ kind: ZarfPackageConfig
 metadata:
   name: fluxcd
   # renovate: datasource=github-releases depName=fluxcd/flux2
-  version: v2.9.2
+  version: v2.9.3
   source: https://github.com/colonel-byte/zarf-pkg-fluxcd
   annotations:
     org.opencontainers.image.source: https://github.com/colonel-byte/zarf-pkg-fluxcd
