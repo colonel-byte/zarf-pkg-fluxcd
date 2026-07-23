@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/zarf-dev/zarf/main/zarf.schema.json
 kind: ZarfPackageConfig
 metadata:
-  name: fluxcd
+  name: pkg-fluxcd
   # renovate: datasource=github-releases depName=fluxcd/flux2
   version: v2.9.3
   source: https://github.com/colonel-byte/zarf-pkg-fluxcd
