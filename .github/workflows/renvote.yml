@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
 
       - name: Configure gitsign
-        uses: chainguard-dev/actions/setup-gitsign@7bd1e94b2a1b7faa891392757de7d89489070c5c # v1.6.32
+        uses: chainguard-dev/actions/setup-gitsign@0ffab11a71c1b7bd68ddf94665a8ec88b116223d # v1.6.33
 
       - name: Install The Latest Release Version of Zarf
         uses: zarf-dev/setup-zarf@10e539efed02f75ec39eb8823e22a5c795f492ae # v1.0.1
