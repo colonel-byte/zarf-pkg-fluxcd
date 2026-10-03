@@ -20,10 +20,10 @@ components:
         kustomizations:
           - upstream/core
     images:
-      - ghcr.io/fluxcd/helm-controller:v1.6.4
-      - ghcr.io/fluxcd/kustomize-controller:v1.9.5
+      - ghcr.io/fluxcd/helm-controller:v1.6.5
+      - ghcr.io/fluxcd/kustomize-controller:v1.9.6
       - ghcr.io/fluxcd/notification-controller:v1.9.4
-      - ghcr.io/fluxcd/source-controller:v1.9.5
+      - ghcr.io/fluxcd/source-controller:v1.9.6
   - name: fluxcd-image-controller
     required: false
     only:
@@ -57,10 +57,10 @@ components:
         kustomizations:
           - minimus/core
     images:
-      - reg.mini.dev/fluxcd-helm-controller:v1.6.4
-      - reg.mini.dev/fluxcd-kustomize-controller:v1.9.5
+      - reg.mini.dev/fluxcd-helm-controller:v1.6.5
+      - reg.mini.dev/fluxcd-kustomize-controller:v1.9.6
       - reg.mini.dev/fluxcd-notification-controller:v1.9.4
-      - reg.mini.dev/fluxcd-source-controller:v1.9.5
+      - reg.mini.dev/fluxcd-source-controller:v1.9.6
   - name: fluxcd-image-controller
     required: false
     only:
