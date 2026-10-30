@@ -2,7 +2,7 @@
 set -u
 set -o pipefail
 
-declare -a FLAVOR=("upstream" "minimus")
+declare -a FLAVOR=("upstream")
 declare -a COMPONENTS=("core" "image-controller" "source-watcher")
 
 for flavor in "${FLAVOR[@]}"; do

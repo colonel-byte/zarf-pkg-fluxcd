@@ -77,16 +77,6 @@
         );
         shellHook = self.checks.${system}.pre-commit-check.shellHook;
         buildInputs = self.checks.${system}.pre-commit-check.enabledPackages ++ [
-          (pkgs.writeShellScriptBin "zpkg" ''
-            rm -rf $TMPDIR/zarf-*
-            rm -rf $TMPDIR/syft-archive-contents-*
-            rm -rf $TMPDIR/container_images_storage*
-            ${pkgs.zarf}/bin/zarf package create -o $(git rev-parse --show-toplevel) --log-format=console --confirm $@
-          '')
-          (pkgs.writeShellScriptBin "zdeploy" ''
-            rm -rf $TMPDIR/zarf-*
-            ${pkgs.zarf}/bin/zarf package deploy --confirm --log-format=console $@
-          '')
           pkgs.gh
           pkgs.zarf
           pkgs.oras
@@ -101,7 +91,7 @@
               check-executables-have-shebangs.enable = true;
               check-shebang-scripts-are-executable.enable = true;
               end-of-file-fixer.enable = true;
-              nixfmt-rfc-style.enable = true;
+              nixfmt.enable = true;
               trim-trailing-whitespace.enable = true;
               # keep-sorted end
             };

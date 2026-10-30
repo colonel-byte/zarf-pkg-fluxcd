@@ -65,7 +65,6 @@ jobs:
       matrix:
         flavor:
           - upstream
-          - minimus
         arch:
           - amd64
           - arm64
